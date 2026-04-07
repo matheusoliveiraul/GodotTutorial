@@ -13,6 +13,7 @@ public partial class Main : Node
 	{
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
+		GetNode<Hud>("Hud").ShowGameOver();
 	}
 
 	public void NewGame()
@@ -24,11 +25,17 @@ public partial class Main : Node
 		player.Start(startPosition.Position);
 
 		GetNode<Timer>("StartTimer").Start();
+
+		var hud = GetNode<Hud>("Hud");
+		hud.UpdateScore(_score);
+		hud.ShowMessage("Get Ready!");
+		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
 	}
 
 	private void OnScoreTimerTimeout()
 	{
 		_score++;
+		GetNode<Hud>("Hud").UpdateScore(_score);
 	}
 
 	// We also specified this function name in PascalCase in the editor's connection window.
