@@ -1,3 +1,15 @@
-# Godot 4+ specific ignores
+# Específico da Godot
 .godot/
+*.translation
 /android/
+
+# Se usar C# (essencial para não dar erro entre Windows/Linux)
+.mono/
+bin/
+obj/
+*.sln
+*.csproj
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
